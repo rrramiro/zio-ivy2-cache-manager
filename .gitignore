@@ -1,0 +1,7 @@
+target/
+project/project
+.scala_dependencies
+.worksheet
+.bloop
+.idea
+.metals
