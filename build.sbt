@@ -57,7 +57,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "zio-ivy2-cache-manager",
     version := "0.1",
-    scalaVersion := "2.13.1",
+    scalaVersion := "2.13.12",
     licenses := Seq(
       "MIT" -> url(
         s"https://github.com/mschuwalow/${name.value}/blob/v${version.value}/LICENSE"
