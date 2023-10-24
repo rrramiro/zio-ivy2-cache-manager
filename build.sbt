@@ -5,7 +5,7 @@ val zioVersion      = "1.0.0-RC18-2"
 val zioCatsVersion  = "2.0.0.0-RC13"
 val zioReactVersion = "1.0.3.5-RC7"
 val fs2Version      = "2.3.0"
-val silencerVersion = "1.6.0"
+//val silencerVersion = "1.6.0"
 val acyclicVersion  = "0.2.0"
 val calibanVersion  = "0.7.6"
 val sttpVersion     = "2.1.1"
@@ -89,7 +89,7 @@ lazy val root = (project in file("."))
       )) ++ Seq(
       "-P:acyclic:force",
       //"-P:splain:all", //TODO comment to have the macros "zio.macros.annotation.accessible" working
-      "-P:silencer:checkUnused"
+      //"-P:silencer:checkUnused"
     ),
     dependencyCheckCveUrlModified := Some(
       new URL("http://nvdmirror.sml.io/")
@@ -131,21 +131,17 @@ lazy val root = (project in file("."))
       "com.github.pureconfig"        %% "pureconfig"                  % "0.12.3",
       "com.lihaoyi"                  %% "sourcecode"                  % "0.2.1",
       "com.lihaoyi"                  %% "acyclic"                     % acyclicVersion % "provided",
-      ("com.github.ghik" % "silencer-lib" % silencerVersion % "provided")
-        .cross(CrossVersion.full),
+      //("com.github.ghik" % "silencer-lib" % silencerVersion % "provided").cross(CrossVersion.full),
       // plugins
       compilerPlugin("com.lihaoyi" %% "acyclic" % acyclicVersion),
       compilerPlugin(
-        ("io.tryp" % "splain" % "0.5.5").cross(CrossVersion.patch)
+        ("io.tryp" % "splain" % "1.0.3").cross(CrossVersion.patch)
       ), //TODO comment to have the macros "zio.macros.annotation.accessible" working
       compilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1"),
       compilerPlugin(
-        ("org.typelevel" % "kind-projector" % "0.11.0").cross(CrossVersion.full)
+        ("org.typelevel" % "kind-projector" % "0.13.2").cross(CrossVersion.full)
       ),
-      compilerPlugin(
-        ("com.github.ghik" % "silencer-plugin" % silencerVersion)
-          .cross(CrossVersion.full)
-      )
+      //compilerPlugin(("com.github.ghik" % "silencer-plugin" % silencerVersion).cross(CrossVersion.full))
     )
   )
 
