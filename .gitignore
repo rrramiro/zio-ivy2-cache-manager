@@ -6,3 +6,4 @@ project/project
 .idea
 .metals
 *.db
+metals.sbt
