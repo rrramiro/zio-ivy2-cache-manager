@@ -7,3 +7,4 @@ project/project
 .metals
 *.db
 metals.sbt
+.bsp

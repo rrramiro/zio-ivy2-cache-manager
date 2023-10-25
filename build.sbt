@@ -32,7 +32,7 @@ val wartremoverTestCompileExclusions = wartremoverCompileExclusions ++ Seq(
   Wart.Var,
   Wart.AsInstanceOf,
   Wart.IsInstanceOf,
-  Wart.TraversableOps,
+  //Wart.TraversableOps,
   Wart.Option2Iterable,
   Wart.JavaSerializable,
   Wart.FinalCaseClass,
@@ -97,13 +97,13 @@ lazy val root = (project in file("."))
     dependencyCheckCveUrlBase := Some("http://nvdmirror.sml.io/"),
     dependencyCheckAssemblyAnalyzerEnabled := Some(false),
     dependencyCheckFormat := "All",
-    wartremoverWarnings in (Compile, compile) := Warts.all
+    Compile / compile / wartremoverWarnings  := Warts.all
       .diff(wartremoverCompileExclusions),
-    wartremoverWarnings in (Test, compile) := Warts.all
+    Test / compile / wartremoverWarnings := Warts.all
       .diff(wartremoverTestCompileExclusions),
-    scalacOptions in (Compile, console) ~= filterConsoleScalacOptions,
-    scalacOptions in (Test, console) ~= filterConsoleScalacOptions,
-    scalacOptions in console ~= filterConsoleScalacOptions,
+    Compile / console / scalacOptions ~= filterConsoleScalacOptions,
+    Test / console / scalacOptions ~= filterConsoleScalacOptions,
+    console / scalacOptions ~= filterConsoleScalacOptions,
 
     libraryDependencies ++= Seq(
       "org.http4s"                   %% "http4s-blaze-server"         % http4sVersion,
@@ -146,6 +146,7 @@ lazy val root = (project in file("."))
   )
 
 //release
+/*
 import ReleaseTransformations._
 import ReleasePlugin.autoImport._
 import sbtrelease.{ Git, Utilities }
@@ -184,6 +185,6 @@ val mergeReleaseVersion = ReleaseStep(action = st => {
   git.cmd("checkout", curBranch) ! st.log
   st
 })
-
+*/
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
